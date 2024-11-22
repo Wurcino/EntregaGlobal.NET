@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "db77bf60-71ae-415f-8f8a-d99f07d136d3",
+		"name": "Entrega_GlobalSolution_Devops",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36031371"
+	},
+	"item": [
+		{
+			"name": "Active Period",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected fields\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"$id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"message\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"periodStart\": \"2024-11-20T10:00:28.806Z\",\r\n  \"periodEnd\": \"2024-11-20T22:00:28.806Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/:deviceId",
+					"protocol": "https",
+					"host": [
+						"solarapp-frezhvfzcbaqexb2",
+						"brazilsouth-01",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"device",
+						"active-period",
+						":deviceId"
+					],
+					"variable": [
+						{
+							"key": "deviceId",
+							"value": "258"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/111' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"periodStart\": \"2024-11-20T22:00:28.806Z\",\r\n  \"periodEnd\": \"2024-11-20T22:00:28.806Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Active Period",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has success message\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Work period updated successfully\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"deviceId\": 258,\r\n  \"periodStart\": \"2024-11-20T12:02:07.448Z\",\r\n  \"periodEnd\": \"2024-11-20T22:02:07.448Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/:id",
+					"protocol": "https",
+					"host": [
+						"solarapp-frezhvfzcbaqexb2",
+						"brazilsouth-01",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"device",
+						"active-period",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'PUT' \\\r\n  'https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/1' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"deviceId\": 0,\r\n  \"periodStart\": \"2024-11-20T22:02:07.448Z\",\r\n  \"periodEnd\": \"2024-11-20T22:02:07.448Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Active Period by DeviceId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response matches deviceId\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.deviceId).to.eql(pm.variables.get(\"deviceId\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/:deviceId",
+					"protocol": "https",
+					"host": [
+						"solarapp-frezhvfzcbaqexb2",
+						"brazilsouth-01",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"device",
+						"active-period",
+						":deviceId"
+					],
+					"variable": [
+						{
+							"key": "deviceId",
+							"value": "258"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/active-period/0' \\\r\n  -H 'accept: */*'"
+			},
+			"response": []
+		},
+		{
+			"name": "Temperature Record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected fields\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"$id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"message\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"internalTemperature\": 0,\r\n  \"externalTemperature\": 0,\r\n  \"measurementTime\": \"2024-11-20T10:04:10.187Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/temperature-record/:deviceId",
+					"protocol": "https",
+					"host": [
+						"solarapp-frezhvfzcbaqexb2",
+						"brazilsouth-01",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"device",
+						"temperature-record",
+						":deviceId"
+					],
+					"variable": [
+						{
+							"key": "deviceId",
+							"value": "258"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/temperature-record/0' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"internalTemperature\": 0,\r\n  \"externalTemperature\": 0,\r\n  \"measurementTime\": \"2024-11-20T22:04:10.187Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Temperature Record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"$values\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": "https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/temperature-record",
+				"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://solarapp-frezhvfzcbaqexb2.brazilsouth-01.azurewebsites.net/api/device/temperature-record' \\\r\n  -H 'accept: */*'"
+			},
+			"response": []
+		}
+	]
+}
